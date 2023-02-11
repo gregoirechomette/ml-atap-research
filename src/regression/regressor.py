@@ -253,14 +253,6 @@ def test_all_models(X, y, y_scaler, hyperparameter_opt=True):
     regressor_linear = LinearRegressor()
     df_models_comparison.loc[len(df_models_comparison.index)] = regressor_linear.cross_validate(X,y,y_scaler)[0]
 
-    # Linear robust
-    print()
-    print('Linear robust')
-    regressor_robust = LinearRobustRegressor()
-    if hyperparameter_opt:
-        regressor_robust.optimize_hyperparameters(X,y,y_scaler)
-    df_models_comparison.loc[len(df_models_comparison.index)] = regressor_robust.cross_validate(X,y,y_scaler)[0]
-
     # Decision tree
     print()
     print('Decision tree')
@@ -294,6 +286,6 @@ def test_all_models(X, y, y_scaler, hyperparameter_opt=True):
     df_models_comparison.loc[len(df_models_comparison.index)] = regressor_nn.cross_validate(X,y,y_scaler)[0]
 
     # Add a column with the names of all the models at the very left
-    df_models_comparison.insert(0, 'Model', ['Linear', 'Linear robust', 'Decision tree', 'Random forest', 'Gradient boosting', 'Neural network'])
+    df_models_comparison.insert(0, 'Model', ['Linear', 'Decision tree', 'Random forest', 'Gradient boosting', 'Neural network'])
 
     return df_models_comparison
